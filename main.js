@@ -71,26 +71,6 @@
         });
     }
 
-    // Event listener for the Liked Images tab
-    document
-        .getElementById('tab-liked-images')
-        .addEventListener('click', function () {
-            // Hide all other tab contents and deactivate other tabs
-            document
-                .querySelectorAll('.tab-content')
-                .forEach((el) => el.classList.remove('active'));
-            document
-                .querySelectorAll('.tab')
-                .forEach((el) => el.classList.remove('active'));
-
-            // Activate the Liked Images tab and display its content
-            this.classList.add('active');
-            document
-                .getElementById('tab-content-liked-images')
-                .classList.add('active');
-            displayLikedImages();
-        });
-
     function injectLikedImagesTab() {
         // Define the HTML for the tab and content
         var tabHtml = `
@@ -115,8 +95,36 @@
         // Inject the HTML
         tabContainer.insertAdjacentHTML('afterend', tabHtml);
         contentContainer.insertAdjacentHTML('afterend', contentHtml);
+
+        document
+            .getElementById('tab-liked-images')
+            .addEventListener('click', function () {
+                // Hide all other tab contents and deactivate other tabs
+                document
+                    .querySelectorAll('.tab-content')
+                    .forEach((el) => el.classList.remove('active'));
+                document
+                    .querySelectorAll('.tab')
+                    .forEach((el) => el.classList.remove('active'));
+
+                // Activate the Liked Images tab and display its content
+                this.classList.add('active');
+                document
+                    .getElementById('tab-content-liked-images')
+                    .classList.add('active');
+                displayLikedImages();
+            });
     }
 
-    // Call the function to inject the tab and content
-    injectLikedImagesTab();
+    // if document is ready, inject the tab, otherwise add an event listener
+    if (
+        document.readyState === 'complete' ||
+        document.readyState === 'loaded' ||
+        document.readyState === 'interactive'
+    ) {
+        injectLikedImagesTab();
+    } else {
+        document.addEventListener('DOMContentLoaded', injectLikedImagesTab);
+    }
+    // injectLikedImagesTab();
 })();
