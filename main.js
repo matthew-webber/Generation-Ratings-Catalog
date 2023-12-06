@@ -139,6 +139,42 @@
         });
     }
 
+    function sortTable(columnIndex, type) {
+        var table = document.getElementById('liked-images-table');
+        var rows = Array.from(table.getElementsByTagName('tr')).slice(1); // Exclude header row
+        var sorted = false;
+
+        while (!sorted) {
+            sorted = true;
+
+            for (var i = 0; i < rows.length - 1; i++) {
+                var x = rows[i].getElementsByTagName('TD')[columnIndex];
+                var y = rows[i + 1].getElementsByTagName('TD')[columnIndex];
+
+                if (
+                    type === 'number'
+                        ? parseFloat(x.innerHTML) > parseFloat(y.innerHTML)
+                        : x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
+                ) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    sorted = false;
+                    break;
+                }
+            }
+        }
+    }
+
+    function addSortingToTableHeaders() {
+        var headers = document.querySelectorAll('#liked-images-table th');
+        headers.forEach((header, index) => {
+            header.classList.add('sortable');
+            header.addEventListener('click', function () {
+                sortTable(index, header.getAttribute('data-type'));
+            });
+            header.innerHTML += ' <i class="fa-solid fa-arrow-down"></i>'; // UI component (arrow icon)
+        });
+    }
+
     function displayLikedImages() {
         var likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
         var tableBody = document.getElementById('liked-images-list');
@@ -157,12 +193,39 @@
         });
     }
 
+    function injectStyles() {
+        var style = document.createElement('style');
+        style.innerHTML = `
+            #liked-images-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            #liked-images-table th, #liked-images-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            #liked-images-table th {
+                background-color: #f4f4f4;
+                cursor: pointer;
+            }
+            #liked-images-table th.sortable:hover {
+                background-color: #eaeaea;
+            }
+            #liked-images-table tr:nth-child(even) {background-color: #f2f2f2;}
+        `;
+        document.head.appendChild(style);
+    }
+
     function init() {
         // Clear the liked images from local storage
         localStorage.removeItem('likedImages');
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
+
+        // inject styles
+        injectStyles();
     }
 
     // if document is ready, inject the tab, otherwise add an event listener
