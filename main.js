@@ -102,13 +102,19 @@
         document
             .querySelector('#tab-liked-images')
             .addEventListener('click', function () {
-                // Hide all other tab contents and deactivate other tabs
+                // for each immediate child of #tab-content-wrapper, remove the active class
                 document
-                    .querySelectorAll('.tab-content')
-                    .forEach((el) => el.classList.remove('active'));
+                    .querySelectorAll('#tab-content-wrapper > .tab-content')
+                    .forEach((el) => {
+                        el.classList.remove('active');
+                    });
+
+                // for each immediate child of #tab-container, remove the active class
                 document
-                    .querySelectorAll('.tab')
-                    .forEach((el) => el.classList.remove('active'));
+                    .querySelectorAll('#tab-container > .tab')
+                    .forEach((el) => {
+                        el.classList.remove('active');
+                    });
 
                 // Activate the Liked Images tab and display its content
                 this.classList.add('active');
@@ -119,21 +125,18 @@
             });
 
         // if any other tab other than Liked Images is clicked, deactivate the Liked Images tab
-        document
-            .querySelector('#tab-container')
-            .querySelectorAll('.tab')
-            .forEach((el) => {
-                if (el.id !== 'tab-liked-images') {
-                    el.addEventListener('click', function () {
-                        document
-                            .querySelector('#tab-liked-images')
-                            .classList.remove('active');
-                        document
-                            .querySelector('#tab-content-liked-images')
-                            .classList.remove('active');
-                    });
-                }
-            });
+        document.querySelectorAll('#tab-container > .tab').forEach((el) => {
+            if (el.id !== 'tab-liked-images') {
+                el.addEventListener('click', function () {
+                    document
+                        .querySelector('#tab-liked-images')
+                        .classList.remove('active');
+                    document
+                        .querySelector('#tab-content-liked-images')
+                        .classList.remove('active');
+                });
+            }
+        });
     }
 
     function displayLikedImages() {
