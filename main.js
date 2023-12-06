@@ -8,13 +8,17 @@
     });
 
     function likeImage(origRequest, image) {
-        // Sanity check: console.log a confirmation message
-        console.log('Image liked.');
+        // Toggle glow effect
+        var imgContainer = image.closest('.imgContainer');
+        if (imgContainer) {
+            imgContainer.style.boxShadow = imgContainer.style.boxShadow
+                ? ''
+                : '0 0 20px rgba(50, 205, 50, 0.7)';
+        } else {
+            console.warn('Could not find imgContainer for image:', image);
+        }
 
-        // You can access the image info using `this`. For example:
-        // let img_info = this.image_info;
-        // console.log('Liked image ID:', img_info.image_id);
-
-        // Further implementation goes here...
+        // Log image ID
+        console.log('Liked image ID:', image.image_id);
     }
 })();
