@@ -89,39 +89,37 @@
         </div>
     `;
 
-        // Locate the parent container and inject the tab and content
-        var tabContainer = document.querySelector('#tab-container');
-        var contentContainer = document.querySelector('#tab-content-wrapper');
+        const tabContainer = document.querySelector('#tab-container');
+        const contentContainer = document.querySelector('#tab-content-wrapper');
+        const likedImagesTab = document.querySelector('#tab-liked-images');
+        const likedImagesTabContent = document.querySelector(
+            '#tab-content-liked-images'
+        );
 
         tabContainer.insertAdjacentHTML('beforeend', tabHtml);
         contentContainer.insertAdjacentHTML('beforeend', contentHtml);
 
-        document
-            .getElementById('tab-liked-images')
-            .addEventListener('click', function () {
-                // Hide all other tab contents and deactivate other tabs
-                document
-                    .querySelectorAll('.tab-content')
-                    .forEach((el) => el.classList.remove('active'));
-                document
-                    .querySelectorAll('.tab')
-                    .forEach((el) => el.classList.remove('active'));
+        likedImagesTab.addEventListener('click', function () {
+            // Hide all other tab contents and deactivate other tabs
+            document
+                .querySelectorAll('.tab-content')
+                .forEach((el) => el.classList.remove('active'));
+            document
+                .querySelectorAll('.tab')
+                .forEach((el) => el.classList.remove('active'));
 
-                // Activate the Liked Images tab and display its content
-                this.classList.add('active');
-                document
-                    .getElementById('tab-content-liked-images')
-                    .classList.add('active');
-                displayLikedImages();
-            });
+            // Activate the Liked Images tab and display its content
+            this.classList.add('active');
+            likedImagesTabContent.classList.add('active');
+            displayLikedImages();
+        });
 
         // if any other tab other than Liked Images is clicked, deactivate the Liked Images tab
         tabContainer.querySelectorAll('.tab').forEach((el) => {
             if (el.id !== 'tab-liked-images') {
                 el.addEventListener('click', function () {
-                    document
-                        .getElementById('tab-liked-images')
-                        .classList.remove('active');
+                    likedImagesTab.classList.remove('active');
+                    likedImagesTabContent.classList.remove('active');
                 });
             }
         });
