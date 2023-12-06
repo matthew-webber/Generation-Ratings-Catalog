@@ -201,18 +201,19 @@
                 border-collapse: collapse;
             }
             #liked-images-table th, #liked-images-table td {
-                border: 1px solid #ddd;
+                border: 1px solid #ddd; /* Light grey */
                 padding: 8px;
-                text-align: left;
             }
             #liked-images-table th {
-                background-color: #f4f4f4;
+                background-color: #5300B8; /* Purple */
                 cursor: pointer;
             }
             #liked-images-table th.sortable:hover {
-                background-color: #eaeaea;
+                background-color: #eaeaea; /* Light grey */
             }
-            #liked-images-table tr:nth-child(even) {background-color: #f2f2f2;}
+            #liked-images-table tr:nth-child(even) {
+                background-color: #000;
+            }      
         `;
         document.head.appendChild(style);
     }
