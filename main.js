@@ -116,15 +116,22 @@
             });
     }
 
+    function init() {
+        // Clear the liked images from local storage
+        localStorage.removeItem('likedImages');
+
+        // Inject the Liked Images tab
+        injectLikedImagesTab();
+    }
+
     // if document is ready, inject the tab, otherwise add an event listener
     if (
         document.readyState === 'complete' ||
         document.readyState === 'loaded' ||
         document.readyState === 'interactive'
     ) {
-        injectLikedImagesTab();
+        init();
     } else {
-        document.addEventListener('DOMContentLoaded', injectLikedImagesTab);
+        document.addEventListener('DOMContentLoaded', init);
     }
-    // injectLikedImagesTab();
 })();
