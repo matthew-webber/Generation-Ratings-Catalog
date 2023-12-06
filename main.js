@@ -59,61 +59,61 @@
         saveLikedImageData(imageData);
     }
 
-    function displayLikedImages() {
-        var likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
-        var container = document.getElementById('liked-images-list');
-        container.innerHTML = '';
+    function injectLikedImagesTab() {
+        // Define the HTML for the tab
+        var tabHtml = `
+        <span id="tab-liked-images" class="tab"><span><i class="fa-solid fa-heart icon"></i><span>Liked Images</span></span></span>
+    `;
 
-        likedImages.forEach((imageData) => {
-            var imageElement = document.createElement('div');
-            imageElement.innerText = `Image ID: ${imageData.imageCounter}, Model: ${imageData.model}, Prompt: ${imageData.prompt}`;
-            container.appendChild(imageElement);
-        });
+        // Define the HTML for the content
+        var contentHtml = `
+        <div id="tab-content-liked-images" class="tab-content">
+            <div id="liked-images" class="tab-content-inner">
+                <h2>Liked Images</h2>
+                <table id="liked-images-table">
+                    <thead>
+                        <tr>
+                            <th>Image Counter</th>
+                            <th>Prompt</th>
+                            <th>Steps</th>
+                            <th>Guidance</th>
+                            <th>Seed</th>
+                            <th>Model</th>
+                        </tr>
+                    </thead>
+                    <tbody id="liked-images-list">
+                        <!-- Liked images will be listed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+
+        // Locate the parent container and inject the tab and content
+        var tabContainer = document.getElementById('tab-container');
+        var contentContainer =
+            document.querySelector('.tab-content').parentNode;
+
+        tabContainer.insertAdjacentHTML('beforeend', tabHtml);
+        contentContainer.insertAdjacentHTML('beforeend', contentHtml);
     }
 
-    function injectLikedImagesTab() {
-        // Define the HTML for the tab and content
-        var tabHtml = `
-            <span id="tab-liked-images" class="tab"><span><i class="fa-solid fa-heart icon"></i><span>Liked Images</span></span></span>
-        `;
-        var contentHtml = `
-            <div id="tab-content-liked-images" class="tab-content">
-                <div id="liked-images" class="tab-content-inner">
-                    <h2>Liked Images</h2>
-                    <div id="liked-images-list">
-                        <!-- Liked images will be listed here -->
-                    </div>
-                </div>
-            </div>
-        `;
+    function displayLikedImages() {
+        var likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
+        var tableBody = document.getElementById('liked-images-list');
+        tableBody.innerHTML = '';
 
-        // Locate the position where the tab and content should be injected
-        var tabContainer = document.getElementById('tab-plugin').parentNode;
-        var contentContainer =
-            document.getElementById('tab-content-merge').parentNode;
-
-        // Inject the HTML
-        tabContainer.insertAdjacentHTML('afterend', tabHtml);
-        contentContainer.insertAdjacentHTML('afterend', contentHtml);
-
-        document
-            .getElementById('tab-liked-images')
-            .addEventListener('click', function () {
-                // Hide all other tab contents and deactivate other tabs
-                document
-                    .querySelectorAll('.tab-content')
-                    .forEach((el) => el.classList.remove('active'));
-                document
-                    .querySelectorAll('.tab')
-                    .forEach((el) => el.classList.remove('active'));
-
-                // Activate the Liked Images tab and display its content
-                this.classList.add('active');
-                document
-                    .getElementById('tab-content-liked-images')
-                    .classList.add('active');
-                displayLikedImages();
-            });
+        likedImages.forEach((imageData) => {
+            var row = `<tr>
+            <td>${imageData.imageCounter}</td>
+            <td>${imageData.prompt}</td>
+            <td>${imageData.steps}</td>
+            <td>${imageData.guidance}</td>
+            <td>${imageData.seed}</td>
+            <td>${imageData.model}</td>
+        </tr>`;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        });
     }
 
     function init() {
