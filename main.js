@@ -118,9 +118,12 @@
         tabContainer.querySelectorAll('.tab').forEach((el) => {
             if (el.id !== 'tab-liked-images') {
                 el.addEventListener('click', function () {
-                    console.log('el.id !== tab-liked-images');
-                    likedImagesTab.classList.remove('active');
-                    likedImagesTabContent.classList.remove('active');
+                    document
+                        .querySelector('#tab-liked-images')
+                        .classList.remove('active');
+                    document
+                        .querySelector('#tab-content-liked-images')
+                        .classList.remove('active');
                 });
             }
         });
