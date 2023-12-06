@@ -99,20 +99,24 @@
         tabContainer.insertAdjacentHTML('beforeend', tabHtml);
         contentContainer.insertAdjacentHTML('beforeend', contentHtml);
 
-        likedImagesTab.addEventListener('click', function () {
-            // Hide all other tab contents and deactivate other tabs
-            document
-                .querySelectorAll('.tab-content')
-                .forEach((el) => el.classList.remove('active'));
-            document
-                .querySelectorAll('.tab')
-                .forEach((el) => el.classList.remove('active'));
+        document
+            .querySelector('#tab-liked-images')
+            .addEventListener('click', function () {
+                // Hide all other tab contents and deactivate other tabs
+                document
+                    .querySelectorAll('.tab-content')
+                    .forEach((el) => el.classList.remove('active'));
+                document
+                    .querySelectorAll('.tab')
+                    .forEach((el) => el.classList.remove('active'));
 
-            // Activate the Liked Images tab and display its content
-            this.classList.add('active');
-            likedImagesTabContent.classList.add('active');
-            displayLikedImages();
-        });
+                // Activate the Liked Images tab and display its content
+                this.classList.add('active');
+                document
+                    .querySelector('#tab-content-liked-images')
+                    .classList.add('active');
+                displayLikedImages();
+            });
 
         // if any other tab other than Liked Images is clicked, deactivate the Liked Images tab
         tabContainer.querySelectorAll('.tab').forEach((el) => {
