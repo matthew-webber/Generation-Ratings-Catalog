@@ -119,18 +119,21 @@
             });
 
         // if any other tab other than Liked Images is clicked, deactivate the Liked Images tab
-        tabContainer.querySelectorAll('.tab').forEach((el) => {
-            if (el.id !== 'tab-liked-images') {
-                el.addEventListener('click', function () {
-                    document
-                        .querySelector('#tab-liked-images')
-                        .classList.remove('active');
-                    document
-                        .querySelector('#tab-content-liked-images')
-                        .classList.remove('active');
-                });
-            }
-        });
+        document
+            .querySelector('#tab-container')
+            .querySelectorAll('.tab')
+            .forEach((el) => {
+                if (el.id !== 'tab-liked-images') {
+                    el.addEventListener('click', function () {
+                        document
+                            .querySelector('#tab-liked-images')
+                            .classList.remove('active');
+                        document
+                            .querySelector('#tab-content-liked-images')
+                            .classList.remove('active');
+                    });
+                }
+            });
     }
 
     function displayLikedImages() {
