@@ -89,10 +89,10 @@
         </div>
     `;
 
-        const tabContainer = document.querySelector('#tab-container');
-        const contentContainer = document.querySelector('#tab-content-wrapper');
-        const likedImagesTab = document.querySelector('#tab-liked-images');
-        const likedImagesTabContent = document.querySelector(
+        var tabContainer = document.querySelector('#tab-container');
+        var contentContainer = document.querySelector('#tab-content-wrapper');
+        var likedImagesTab = document.querySelector('#tab-liked-images');
+        var likedImagesTabContent = document.querySelector(
             '#tab-content-liked-images'
         );
 
