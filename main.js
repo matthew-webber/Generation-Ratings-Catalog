@@ -137,6 +137,9 @@
                 });
             }
         });
+
+        // Add sorting to the table headers
+        addSortingToTableHeaders();
     }
 
     function sortTableByColumn(table, columnIndex, type, isAsc = true) {
@@ -202,8 +205,6 @@
         </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
-
-        addSortingToTableHeaders();
     }
 
     function injectStyles() {
