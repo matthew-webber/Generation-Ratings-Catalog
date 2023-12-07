@@ -74,11 +74,11 @@
                     <thead>
                         <tr>
                             <th data-type="number">Image Counter</th>
-                            <th>Prompt</th>
+                            <th data-type="string">Prompt</th>
                             <th data-type="number">Steps</th>
                             <th data-type="number">Guidance</th>
                             <th data-type="number">Seed</th>
-                            <th>Model</th>
+                            <th data-type="string">Model</th>
                         </tr>
                     </thead>
                     <tbody id="liked-images-list">
@@ -144,29 +144,24 @@
         const rows = Array.from(tbody.querySelectorAll('tr'));
 
         const sortedRows = rows.sort((a, b) => {
-            let aValue = a.children[columnIndex].textContent.trim();
-            let bValue = b.children[columnIndex].textContent.trim();
+            const aValue =
+                type === 'number'
+                    ? parseFloat(a.children[columnIndex].textContent)
+                    : a.children[columnIndex].textContent.toLowerCase();
+            const bValue =
+                type === 'number'
+                    ? parseFloat(b.children[columnIndex].textContent)
+                    : b.children[columnIndex].textContent.toLowerCase();
 
-            if (type === 'number') {
-                aValue = parseFloat(aValue);
-                bValue = parseFloat(bValue);
-            }
-
-            if (isAsc) {
-                return aValue.localeCompare(bValue, undefined, {
-                    numeric: type === 'number',
-                    sensitivity: 'base',
-                });
-            } else {
-                return bValue.localeCompare(aValue, undefined, {
-                    numeric: type === 'number',
-                    sensitivity: 'base',
-                });
-            }
+            if (aValue < bValue) return isAsc ? -1 : 1;
+            if (aValue > bValue) return isAsc ? 1 : -1;
+            return 0;
         });
 
         // Clear current rows and append sorted rows
-        tbody.innerHTML = '';
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+        }
         sortedRows.forEach((row) => tbody.appendChild(row));
     }
 
@@ -186,26 +181,9 @@
                 );
                 headers.forEach((h) => h.classList.remove('asc', 'desc'));
                 header.classList.add(isAsc ? 'asc' : 'desc');
-                updateSortIcons(headers, header, isAsc);
             });
-            header.innerHTML += ` <i class="fa-solid fa-arrow-down"></i>`; // Default UI component (arrow icon)
+            header.innerHTML += ' <i class="fa-solid fa-arrow-down"></i>'; // UI component (arrow icon)
         });
-    }
-
-    function updateSortIcons(headers, activeHeader, isAscending) {
-        headers.forEach((header) => {
-            const icon = header.querySelector('i.fa-solid');
-            if (icon) {
-                icon.className = 'fa-solid'; // Reset icon classes
-            }
-        });
-
-        const activeIcon = activeHeader.querySelector('i.fa-solid');
-        if (activeIcon) {
-            activeIcon.classList.add(
-                isAscending ? 'fa-arrow-down' : 'fa-arrow-up'
-            );
-        }
     }
 
     function displayLikedImages() {
