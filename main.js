@@ -67,27 +67,15 @@
 
         // Define the HTML for the content
         var contentHtml = `
-        <div id="tab-content-liked-images" class="tab-content">
-            <div id="liked-images" class="tab-content-inner">
-                <h2>Liked Images</h2>
-                <table id="liked-images-table">
-                    <thead>
-                        <tr>
-                            <th data-type="number">Image Counter</th>
-                            <th data-type="string">Prompt</th>
-                            <th data-type="number">Steps</th>
-                            <th data-type="number">Guidance</th>
-                            <th data-type="number">Seed</th>
-                            <th data-type="string">Model</th>
-                        </tr>
-                    </thead>
-                    <tbody id="liked-images-list">
-                        <!-- Liked images will be listed here -->
-                    </tbody>
-                </table>
+            <div id="tab-content-liked-images" class="tab-content">
+                <div id="liked-images" class="custom-tab-content-inner">
+                    <h2>Liked Images</h2>
+                    <table id="liked-images-table">
+                        <!-- Table content -->
+                    </table>
+                </div>
             </div>
-        </div>
-    `;
+        `;
 
         var tabContainer = document.querySelector('#tab-container');
         var contentContainer = document.querySelector('#tab-content-wrapper');
@@ -226,7 +214,10 @@
             }
             #liked-images-table tr:nth-child(even) {
                 background-color: #000;
-            }      
+            }
+            .custom-tab-content-inner {
+                padding: 20px 10px;
+            }  
         `;
         document.head.appendChild(style);
     }
