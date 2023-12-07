@@ -220,7 +220,7 @@
 
     function init() {
         // Clear the liked images from local storage
-        localStorage.removeItem('likedImages');
+        // localStorage.removeItem('likedImages');
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
