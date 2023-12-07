@@ -191,6 +191,8 @@
         </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
+
+        addSortingToTableHeaders();
     }
 
     function injectStyles() {
