@@ -71,7 +71,19 @@
                 <div id="liked-images" class="custom-tab-content-inner">
                     <h2>Liked Images</h2>
                     <table id="liked-images-table">
-                        <!-- Table content -->
+                        <thead>
+                            <tr>
+                                <th data-type="number">Image Counter</th>
+                                <th data-type="string">Prompt</th>
+                                <th data-type="number">Steps</th>
+                                <th data-type="number">Guidance</th>
+                                <th data-type="number">Seed</th>
+                                <th data-type="string">Model</th>
+                            </tr>
+                        </thead>
+                        <tbody id="liked-images-list">
+                            <!-- Liked images will be listed here -->
+                        </tbody>
                     </table>
                 </div>
             </div>
