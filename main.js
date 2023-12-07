@@ -12,8 +12,7 @@
         }
     );
 
-    // save style string to a variable
-    const styles = `
+    const STYLES = `
         #liked-images-table {
             width: 100%;
             border-collapse: collapse;
@@ -23,7 +22,7 @@
             padding: 8px;
         }
         #liked-images-table th {
-            background-color: #f00; /* Purple */
+            background-color: #5300B8; /* Purple */
             cursor: pointer;
         }
         #liked-images-table th.sortable:hover {
@@ -34,8 +33,39 @@
         }
         .custom-tab-content-inner {
             padding: 20px 10px;
+        }
+        #liked-images-table thead i {
+            padding-right: 10px;
         }  
     `;
+
+    const MARKUP = {
+        tab: `
+            <span id="tab-liked-images" class="tab"><span><i class="fa-solid fa-heart icon"></i><span>Liked Images</span></span></span>
+        `,
+        content: `
+            <div id="tab-content-liked-images" class="tab-content">
+                <div id="liked-images" class="custom-tab-content-inner">
+                    <h2>Liked Images</h2>
+                    <table id="liked-images-table">
+                        <thead>
+                            <tr>
+                                <th data-type="number">Image Counter</th>
+                                <th data-type="string">Prompt</th>
+                                <th data-type="number">Steps</th>
+                                <th data-type="number">Guidance</th>
+                                <th data-type="number">Seed</th>
+                                <th data-type="string">Model</th>
+                            </tr>
+                        </thead>
+                        <tbody id="liked-images-list">
+                            <!-- Liked images will be listed here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `,
+    };
 
     function saveLikedImageData(imageData) {
         let likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
@@ -86,33 +116,10 @@
 
     function injectLikedImagesTab() {
         // Define the HTML for the tab
-        var tabHtml = `
-        <span id="tab-liked-images" class="tab"><span><i class="fa-solid fa-heart icon"></i><span>Liked Images</span></span></span>
-    `;
+        var tabHtml = MARKUP.tab;
 
         // Define the HTML for the content
-        var contentHtml = `
-            <div id="tab-content-liked-images" class="tab-content">
-                <div id="liked-images" class="custom-tab-content-inner">
-                    <h2>Liked Images</h2>
-                    <table id="liked-images-table">
-                        <thead>
-                            <tr>
-                                <th data-type="number">Image Counter</th>
-                                <th data-type="string">Prompt</th>
-                                <th data-type="number">Steps</th>
-                                <th data-type="number">Guidance</th>
-                                <th data-type="number">Seed</th>
-                                <th data-type="string">Model</th>
-                            </tr>
-                        </thead>
-                        <tbody id="liked-images-list">
-                            <!-- Liked images will be listed here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        `;
+        var contentHtml = MARKUP.content;
 
         var tabContainer = document.querySelector('#tab-container');
         var contentContainer = document.querySelector('#tab-content-wrapper');
@@ -207,7 +214,6 @@
                 headers.forEach((h) => h.classList.remove('asc', 'desc'));
                 header.classList.add(isAsc ? 'asc' : 'desc');
             });
-            header.innerHTML += '<i class="fa-solid fa-arrows-up-down"></i>'; // UI component (arrow icon)
         });
     }
 
@@ -218,20 +224,20 @@
 
         likedImages.forEach((imageData) => {
             var row = `<tr>
-            <td>${imageData.imageCounter}</td>
-            <td>${imageData.prompt}</td>
-            <td>${imageData.steps}</td>
-            <td>${imageData.guidance}</td>
-            <td>${imageData.seed}</td>
-            <td>${imageData.model}</td>
-        </tr>`;
+                <td>${imageData.imageCounter}</td>
+                <td>${imageData.prompt}</td>
+                <td>${imageData.steps}</td>
+                <td>${imageData.guidance}</td>
+                <td>${imageData.seed}</td>
+                <td>${imageData.model}</td>
+            </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
     }
 
     function injectStyles() {
         var style = document.createElement('style');
-        style.innerHTML = styles;
+        style.innerHTML = STYLES;
         document.head.appendChild(style);
     }
 
