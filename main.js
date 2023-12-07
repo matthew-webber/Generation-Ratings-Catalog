@@ -139,37 +139,48 @@
         });
     }
 
-    function sortTable(columnIndex, type) {
-        var table = document.getElementById('liked-images-table');
-        var rows = Array.from(table.getElementsByTagName('tr')).slice(1); // Exclude header row
-        var sorted = false;
+    function sortTableByColumn(table, columnIndex, type, isAsc = true) {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
 
-        while (!sorted) {
-            sorted = true;
+        const sortedRows = rows.sort((a, b) => {
+            const aValue =
+                type === 'number'
+                    ? parseFloat(a.children[columnIndex].textContent)
+                    : a.children[columnIndex].textContent.toLowerCase();
+            const bValue =
+                type === 'number'
+                    ? parseFloat(b.children[columnIndex].textContent)
+                    : b.children[columnIndex].textContent.toLowerCase();
 
-            for (var i = 0; i < rows.length - 1; i++) {
-                var x = rows[i].getElementsByTagName('TD')[columnIndex];
-                var y = rows[i + 1].getElementsByTagName('TD')[columnIndex];
+            if (aValue < bValue) return isAsc ? -1 : 1;
+            if (aValue > bValue) return isAsc ? 1 : -1;
+            return 0;
+        });
 
-                if (
-                    type === 'number'
-                        ? parseFloat(x.innerHTML) > parseFloat(y.innerHTML)
-                        : x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
-                ) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    sorted = false;
-                    break;
-                }
-            }
+        // Clear current rows and append sorted rows
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
         }
+        sortedRows.forEach((row) => tbody.appendChild(row));
     }
 
     function addSortingToTableHeaders() {
-        var headers = document.querySelectorAll('#liked-images-table th');
+        const table = document.querySelector('#liked-images-table');
+        const headers = table.querySelectorAll('th');
+
         headers.forEach((header, index) => {
             header.classList.add('sortable');
-            header.addEventListener('click', function () {
-                sortTable(index, header.getAttribute('data-type'));
+            header.addEventListener('click', () => {
+                const isAsc = !header.classList.contains('asc');
+                sortTableByColumn(
+                    table,
+                    index,
+                    header.getAttribute('data-type'),
+                    isAsc
+                );
+                headers.forEach((h) => h.classList.remove('asc', 'desc'));
+                header.classList.add(isAsc ? 'asc' : 'desc');
             });
             header.innerHTML += ' <i class="fa-solid fa-arrow-down"></i>'; // UI component (arrow icon)
         });
