@@ -73,11 +73,11 @@
                 <table id="liked-images-table">
                     <thead>
                         <tr>
-                            <th>Image Counter</th>
+                            <th data-type="number">Image Counter</th>
                             <th>Prompt</th>
-                            <th>Steps</th>
-                            <th>Guidance</th>
-                            <th>Seed</th>
+                            <th data-type="number">Steps</th>
+                            <th data-type="number">Guidance</th>
+                            <th data-type="number">Seed</th>
                             <th>Model</th>
                         </tr>
                     </thead>
