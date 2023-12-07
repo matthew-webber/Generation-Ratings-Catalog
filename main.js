@@ -137,9 +137,6 @@
                 });
             }
         });
-
-        // Add sorting to the table headers
-        addSortingToTableHeaders();
     }
 
     function sortTableByColumn(table, columnIndex, type, isAsc = true) {
@@ -244,6 +241,9 @@
 
         // inject styles
         injectStyles();
+
+        // Add sorting to table headers
+        addSortingToTableHeaders();
     }
 
     // if document is ready, inject the tab, otherwise add an event listener
