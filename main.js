@@ -182,8 +182,7 @@
                 headers.forEach((h) => h.classList.remove('asc', 'desc'));
                 header.classList.add(isAsc ? 'asc' : 'desc');
             });
-            header.innerHTML +=
-                ' <i class="<i class="fa-solid fa-arrows-up-down"></i>"></i>'; // UI component (arrow icon)
+            header.innerHTML += '<i class="fa-solid fa-arrows-up-down"></i>'; // UI component (arrow icon)
         });
     }
 
