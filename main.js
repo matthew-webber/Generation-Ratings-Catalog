@@ -144,24 +144,29 @@
         const rows = Array.from(tbody.querySelectorAll('tr'));
 
         const sortedRows = rows.sort((a, b) => {
-            const aValue =
-                type === 'number'
-                    ? parseFloat(a.children[columnIndex].textContent)
-                    : a.children[columnIndex].textContent.toLowerCase();
-            const bValue =
-                type === 'number'
-                    ? parseFloat(b.children[columnIndex].textContent)
-                    : b.children[columnIndex].textContent.toLowerCase();
+            let aValue = a.children[columnIndex].textContent.trim();
+            let bValue = b.children[columnIndex].textContent.trim();
 
-            if (aValue < bValue) return isAsc ? -1 : 1;
-            if (aValue > bValue) return isAsc ? 1 : -1;
-            return 0;
+            if (type === 'number') {
+                aValue = parseFloat(aValue);
+                bValue = parseFloat(bValue);
+            }
+
+            if (isAsc) {
+                return aValue.localeCompare(bValue, undefined, {
+                    numeric: type === 'number',
+                    sensitivity: 'base',
+                });
+            } else {
+                return bValue.localeCompare(aValue, undefined, {
+                    numeric: type === 'number',
+                    sensitivity: 'base',
+                });
+            }
         });
 
         // Clear current rows and append sorted rows
-        while (tbody.firstChild) {
-            tbody.removeChild(tbody.firstChild);
-        }
+        tbody.innerHTML = '';
         sortedRows.forEach((row) => tbody.appendChild(row));
     }
 
@@ -181,9 +186,26 @@
                 );
                 headers.forEach((h) => h.classList.remove('asc', 'desc'));
                 header.classList.add(isAsc ? 'asc' : 'desc');
+                updateSortIcons(headers, header, isAsc);
             });
-            header.innerHTML += ' <i class="fa-solid fa-arrow-down"></i>'; // UI component (arrow icon)
+            header.innerHTML += ` <i class="fa-solid fa-arrow-down"></i>`; // Default UI component (arrow icon)
         });
+    }
+
+    function updateSortIcons(headers, activeHeader, isAscending) {
+        headers.forEach((header) => {
+            const icon = header.querySelector('i.fa-solid');
+            if (icon) {
+                icon.className = 'fa-solid'; // Reset icon classes
+            }
+        });
+
+        const activeIcon = activeHeader.querySelector('i.fa-solid');
+        if (activeIcon) {
+            activeIcon.classList.add(
+                isAscending ? 'fa-arrow-down' : 'fa-arrow-up'
+            );
+        }
     }
 
     function displayLikedImages() {
@@ -222,7 +244,7 @@
                 cursor: pointer;
             }
             #liked-images-table th.sortable:hover {
-                background-color: #eaeaea; /* Light grey */
+                background-color: #320365; /* Darker purple */
             }
             #liked-images-table tr:nth-child(even) {
                 background-color: #000;
@@ -253,3 +275,34 @@
         document.addEventListener('DOMContentLoaded', init);
     }
 })();
+
+/*
+localStorage for dev:
+
+[
+    {
+        "imageCounter": "3",
+        "prompt": "cat on a windowsill",
+        "steps": 14,
+        "guidance": 9,
+        "seed": 1485776769,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "2",
+        "prompt": "body by Calvin Klein",
+        "steps": 12,
+        "guidance": 8.3,
+        "seed": 608630128,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "1",
+        "prompt": "a photograph of an astronaut riding a horse",
+        "steps": 10,
+        "guidance": 7.1,
+        "seed": 3161532248,
+        "model": "f222"
+    }
+]
+*/
