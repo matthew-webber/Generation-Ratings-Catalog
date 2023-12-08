@@ -18,22 +18,22 @@
             border-collapse: collapse;
         }
         thead th:nth-child(1) {
-            width: 6%;  ${// id''}
+            width: 6%;  ${/*id*/ ''}
         }
         thead th:nth-child(2) {
-            width: auto; ${// prompt''}
+            width: auto; ${/*prompt*/ ''}
         }
         thead th:nth-child(3) {
-            width: 6%;  ${// steps''}
+            width: 6%;  ${/*steps*/ ''}
         }
         thead th:nth-child(4) {
-            width: 6%;  ${// guidance''}
+            width: 6%;  ${/*guidance*/ ''}
         }
         thead th:nth-child(5) {
-            width: 8%;  ${// seed''}
+            width: 8%;  ${/*seed*/ ''}
         }
         thead th:nth-child(6) {
-            width: 20%;  ${// model''}
+            width: 20%;  ${/*model*/ ''}
         }
         #liked-images-table th, #liked-images-table td {
             border: 1px solid #ddd; /* Light grey */
