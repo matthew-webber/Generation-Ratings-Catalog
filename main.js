@@ -18,22 +18,22 @@
             border-collapse: collapse;
         }
         thead th:nth-child(1) {
-            width: 6%;
+            width: 6%; /* Image ID */
         }
         thead th:nth-child(2) {
-            width: auto
+            width: auto; /* Prompt */
         }
         thead th:nth-child(3) {
-            width: 6%;
+            width: 6%; /* Steps */
         }
         thead th:nth-child(4) {
-            width: 6%;
+            width: 6%; /* Guidance */
         }
         thead th:nth-child(5) {
-            width: 8%;
+            width: 8%; /* Seed */
         }
         thead th:nth-child(6) {
-            width: 20%;
+            width: 20%; /* Model */
         }
         #liked-images-table th, #liked-images-table td {
             border: 1px solid #ddd; /* Light grey */
