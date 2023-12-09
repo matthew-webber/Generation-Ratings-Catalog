@@ -264,9 +264,23 @@
         document.head.appendChild(style);
     }
 
+    function async loadDemoData() {
+        // Load the demo data
+        var demoData = await fetch(
+            'https://raw.githubusercontent.com/matthew-webber/Generation-Ratings-Catalog/master/generation-demo.json'
+        ).then((response) => response.json());
+
+        // Save the demo data to local storage
+        localStorage.setItem('likedImages', JSON.stringify(demoData));
+    }
+
+
     function init() {
         // Clear the liked images from local storage
-        // localStorage.removeItem('likedImages');
+        localStorage.removeItem('likedImages');
+
+        // load the liked images demo data
+        loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
@@ -289,34 +303,3 @@
         document.addEventListener('DOMContentLoaded', init);
     }
 })();
-
-/*
-localStorage for dev:
-
-[
-    {
-        "imageCounter": "3",
-        "prompt": "cat on a windowsill",
-        "steps": 14,
-        "guidance": 9,
-        "seed": 1485776769,
-        "model": "sd-v1-4"
-    },
-    {
-        "imageCounter": "2",
-        "prompt": "body by Calvin Klein",
-        "steps": 12,
-        "guidance": 8.3,
-        "seed": 608630128,
-        "model": "deliberate_v2"
-    },
-    {
-        "imageCounter": "1",
-        "prompt": "a photograph of an astronaut riding a horse",
-        "steps": 10,
-        "guidance": 7.1,
-        "seed": 3161532248,
-        "model": "f222"
-    }
-]
-*/
