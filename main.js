@@ -264,7 +264,7 @@
         document.head.appendChild(style);
     }
 
-    function async loadDemoData() {
+    async function loadDemoData() {
         // Load the demo data
         var demoData = await fetch(
             'https://raw.githubusercontent.com/matthew-webber/Generation-Ratings-Catalog/master/generation-demo.json'
@@ -273,7 +273,6 @@
         // Save the demo data to local storage
         localStorage.setItem('likedImages', JSON.stringify(demoData));
     }
-
 
     function init() {
         // Clear the liked images from local storage
