@@ -44,7 +44,7 @@
             cursor: pointer;
         }
         #liked-images-table th.sortable:hover {
-            background-color: #320365; /* Darker purple */
+            background-color: #320365; /* Darker purple! */
         }
         #liked-images-table tr:nth-child(even) {
             background-color: #000;
