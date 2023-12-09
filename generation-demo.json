@@ -1,0 +1,346 @@
+[
+    {
+        "imageCounter": "5",
+        "prompt": "tabby cat on a windowsill, rays of sunshine, photorealistic",
+        "steps": 14,
+        "guidance": 9,
+        "seed": 5832538778,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "6",
+        "prompt": "majestic waterfall in a lush forest, vibrant colors",
+        "steps": 20,
+        "guidance": 11,
+        "seed": 7892345678,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "7",
+        "prompt": "spectacular sunset over a tranquil beach, calming waves",
+        "steps": 25,
+        "guidance": 12,
+        "seed": 2345678901,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "8",
+        "prompt": "ancient ruins in a dense jungle, mystical atmosphere",
+        "steps": 30,
+        "guidance": 14,
+        "seed": 9876543210,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "9",
+        "prompt": "a bustling market in Marrakech, vibrant colors, exotic spices",
+        "steps": 35,
+        "guidance": 13,
+        "seed": 1357924680,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "11",
+        "prompt": "enchanted forest with fireflies, magical ambiance",
+        "steps": 45,
+        "guidance": 9,
+        "seed": 8642097531,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "4",
+        "prompt": "photorealistic image of a tabby cat on a windowsill with rays of sunshine coming through the window, (photorealistic:1.1)",
+        "steps": 14,
+        "guidance": 9,
+        "seed": 1485776769,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "3",
+        "prompt": "tabby cat, windowsill, rays of sunshine shining on it, (photorealistic:1.2)",
+        "steps": 14,
+        "guidance": 9,
+        "seed": 1347134713,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "2",
+        "prompt": "a speeding Ferrari, Brooklyn street, (fast car, Ferrari:1.1)",
+        "steps": 12,
+        "guidance": 8,
+        "seed": 23573528,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "42",
+        "prompt": "a speeding Ferrari, Brooklyn street, sundown",
+        "steps": 12,
+        "guidance": 8,
+        "seed": 496464602,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "43",
+        "prompt": "a Ferrari zooming down a Brooklyn street at sundown",
+        "steps": 12,
+        "guidance": 8,
+        "seed": 608630128,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "10",
+        "prompt": "a photograph of an astronaut riding a horse",
+        "steps": 10,
+        "guidance": 7,
+        "seed": 1076601637,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "1",
+        "prompt": "a photograph of an astronaut riding a horse",
+        "steps": 10,
+        "guidance": 7,
+        "seed": 3161532248,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "12",
+        "prompt": "magnificent mountain range covered in snow, serene landscape",
+        "steps": 45,
+        "guidance": 9,
+        "seed": 9876543210,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "13",
+        "prompt": "vivid coral reef teeming with marine life, crystal clear water",
+        "steps": 30,
+        "guidance": 9,
+        "seed": 1234567890,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "14",
+        "prompt": "ancient Greek temple on a hill, golden sunlight",
+        "steps": 20,
+        "guidance": 9,
+        "seed": 3456789012,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "15",
+        "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
+        "steps": 40,
+        "guidance": 9,
+        "seed": 5678901234,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "16",
+        "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
+        "steps": 35,
+        "guidance": 9,
+        "seed": 6789012345,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "17",
+        "prompt": "majestic waterfall in a lush forest, vibrant colors",
+        "steps": 45,
+        "guidance": 9,
+        "seed": 7890123456,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "18",
+        "prompt": "spectacular sunset over a tranquil beach, calming waves",
+        "steps": 50,
+        "guidance": 9,
+        "seed": 8901234567,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "19",
+        "prompt": "ancient ruins in a dense jungle, mystical atmosphere",
+        "steps": 15,
+        "guidance": 9,
+        "seed": 9012345678,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "20",
+        "prompt": "a bustling market in Marrakech, vibrant colors, exotic spices",
+        "steps": 25,
+        "guidance": 9,
+        "seed": 2345678901,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "21",
+        "prompt": "enchanted forest with fireflies, magical ambiance",
+        "steps": 30,
+        "guidance": 9,
+        "seed": 3456789012,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "22",
+        "prompt": "magnificent mountain range covered in snow, serene landscape",
+        "steps": 40,
+        "guidance": 9,
+        "seed": 4567890123,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "23",
+        "prompt": "vivid coral reef teeming with marine life, crystal clear water",
+        "steps": 35,
+        "guidance": 9,
+        "seed": 5678901234,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "24",
+        "prompt": "ancient Greek temple on a hill, golden sunlight",
+        "steps": 20,
+        "guidance": 9,
+        "seed": 6789012345,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "25",
+        "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
+        "steps": 30,
+        "guidance": 9,
+        "seed": 7890123456,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "26",
+        "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
+        "steps": 25,
+        "guidance": 9,
+        "seed": 8901234567,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "27",
+        "prompt": "ancient Egyptian pyramid under a clear blue sky",
+        "steps": 40,
+        "guidance": 9,
+        "seed": 1234567890,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "28",
+        "prompt": "vibrant market in Bangkok, street food stalls, bustling crowd",
+        "steps": 25,
+        "guidance": 8,
+        "seed": 2345678901,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "29",
+        "prompt": "majestic waterfall in a tropical rainforest, lush vegetation",
+        "steps": 20,
+        "guidance": 12,
+        "seed": 3456789012,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "30",
+        "prompt": "colorful hot air balloons over the Swiss Alps, breathtaking view",
+        "steps": 30,
+        "guidance": 14,
+        "seed": 4567890123,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "31",
+        "prompt": "peaceful Zen garden with a koi pond, cherry blossoms",
+        "steps": 35,
+        "guidance": 11,
+        "seed": 5678901234,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "32",
+        "prompt": "medieval castle on a hill, dramatic sunset in the background",
+        "steps": 45,
+        "guidance": 9,
+        "seed": 6789012345,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "33",
+        "prompt": "vivid coral reef teeming with marine life, crystal clear water",
+        "steps": 25,
+        "guidance": 7,
+        "seed": 7890123456,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "34",
+        "prompt": "ancient Greek temple on a hill, golden sunlight",
+        "steps": 30,
+        "guidance": 15,
+        "seed": 8901234567,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "35",
+        "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
+        "steps": 40,
+        "guidance": 8,
+        "seed": 9012345678,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "36",
+        "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
+        "steps": 45,
+        "guidance": 10,
+        "seed": 9876543210,
+        "model": "f222"
+    },
+    {
+        "imageCounter": "37",
+        "prompt": "magnificent mountain range covered in snow, serene landscape",
+        "steps": 35,
+        "guidance": 9,
+        "seed": 7890123456,
+        "model": "sd-v1-4"
+    },
+    {
+        "imageCounter": "38",
+        "prompt": "vivid coral reef teeming with marine life, crystal clear water",
+        "steps": 20,
+        "guidance": 11,
+        "seed": 1234567890,
+        "model": "sd-v1-5"
+    },
+    {
+        "imageCounter": "39",
+        "prompt": "ancient Greek temple on a hill, golden sunlight",
+        "steps": 25,
+        "guidance": 10,
+        "seed": 3456789012,
+        "model": "ICantBelieveItsNotButter"
+    },
+    {
+        "imageCounter": "40",
+        "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
+        "steps": 15,
+        "guidance": 9,
+        "seed": 5678901234,
+        "model": "deliberate_v2"
+    },
+    {
+        "imageCounter": "41",
+        "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
+        "steps": 30,
+        "guidance": 12,
+        "seed": 6789012345,
+        "model": "f222"
+    }
+]
