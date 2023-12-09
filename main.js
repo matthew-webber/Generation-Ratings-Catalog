@@ -13,6 +13,10 @@
     );
 
     const STYLES = `
+        /* ==================== */
+        /* Table Styles */
+        /* ==================== */
+
         #liked-images-table {
             width: 100%;
             border-collapse: collapse;
@@ -35,6 +39,9 @@
         thead th:nth-child(6) {
             width: 20%; /* Model */
         }
+        thead th:nth-child(7) {
+            width: 3%; /* Src */
+        }
         #liked-images-table th, #liked-images-table td {
             border: 1px solid #ddd; /* Light grey */
             padding: 8px;
@@ -49,11 +56,61 @@
         #liked-images-table tr:nth-child(even) {
             background-color: #000;
         }
-        .custom-tab-content-inner {
-            padding: 20px 10px;
-        }
         #liked-images-table thead i {
             padding-right: 10px;
+        }
+        #liked-images-table tbody img {
+            width: 50px;
+            height: auto;
+        }
+
+        /* ==================== */
+        /* Modal Styles */
+        /* ==================== */
+
+        .custom-modal {
+            position: fixed;
+            display: none;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-modal-content {
+            margin: auto;
+            display: block;
+            width: auto;
+        }
+
+        .custom-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .custom-modal-close:hover,
+        .custom-modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* ==================== */
+        /* General UI Styles */
+        /* ==================== */
+
+        .custom-tab-content-inner {
+            padding: 20px 10px;
         }
         @media (min-width: 700px) {
             body {
@@ -79,6 +136,7 @@
                                 <th data-type="number">Guidance</th>
                                 <th data-type="number">Seed</th>
                                 <th data-type="string">Model</th>
+                                <th data-type="meta">Src</th>
                             </tr>
                         </thead>
                         <tbody id="liked-images-list">
@@ -125,6 +183,7 @@
 
         // Prepare image data
         var imageData = {
+            // src: imageElement.getAttribute('src'),
             imageCounter: imageElement.getAttribute('data-imagecounter'),
             prompt: origRequest.prompt,
             steps: origRequest.num_inference_steps,
@@ -134,6 +193,8 @@
         };
 
         // Save or remove the liked image data
+        console.log('origRequest', origRequest);
+        console.log('imageElement', imageElement);
         saveLikedImageData(imageData);
     }
 
@@ -226,17 +287,19 @@
 
         headers.forEach((header, index) => {
             header.classList.add('sortable');
-            header.addEventListener('click', () => {
-                const isAsc = !header.classList.contains('asc');
-                sortTableByColumn(
-                    table,
-                    index,
-                    header.getAttribute('data-type'),
-                    isAsc
-                );
-                headers.forEach((h) => h.classList.remove('asc', 'desc'));
-                header.classList.add(isAsc ? 'asc' : 'desc');
-            });
+            // if the header is not 'src' or 'actions', add a click event listener
+            'src' !== header.getAttribute('data-type') &&
+                header.addEventListener('click', () => {
+                    const isAsc = !header.classList.contains('asc');
+                    sortTableByColumn(
+                        table,
+                        index,
+                        header.getAttribute('data-type'),
+                        isAsc
+                    );
+                    headers.forEach((h) => h.classList.remove('asc', 'desc'));
+                    header.classList.add(isAsc ? 'asc' : 'desc');
+                });
         });
     }
 
@@ -246,6 +309,11 @@
         tableBody.innerHTML = '';
 
         likedImages.forEach((imageData) => {
+            // set the <img> element with imageData.imageCounter to a variable
+            var imageElement = document.querySelector(
+                `img[data-imagecounter="${imageData.imageCounter}"]`
+            );
+
             var row = `<tr>
                 <td>${imageData.imageCounter}</td>
                 <td>${imageData.prompt}</td>
@@ -253,9 +321,11 @@
                 <td>${imageData.guidance}</td>
                 <td>${imageData.seed}</td>
                 <td>${imageData.model}</td>
+                <td>${imageElement.outerHTML}</td>
             </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
+        addShowModalToSrcImage();
     }
 
     function injectStyles() {
@@ -274,12 +344,70 @@
         localStorage.setItem('likedImages', JSON.stringify(demoData));
     }
 
+    function addShowModalToSrcImage() {
+        let modal;
+        if (!document.querySelector('.custom-modal')) {
+            // Create the modal element
+            modal = document.createElement('div');
+            modal.classList.add('custom-modal');
+            modal.innerHTML = `
+            <span class="custom-modal-close">&times;</span>
+            <img class="custom-modal-content">
+        `;
+            document.body.appendChild(modal);
+        }
+
+        modal = document.querySelector('.custom-modal');
+        const img = document.querySelector('.custom-modal-content');
+        const closeButton = document.querySelectorAll('.custom-modal-close')[0];
+
+        // Get the images in the 'src' column
+        var images = document.querySelectorAll('#liked-images-table img');
+
+        function showModal() {
+            document.querySelector('.custom-modal').style.display = 'flex';
+            img.src = this.src;
+        }
+
+        function hideModal() {
+            document.querySelector('.custom-modal').style.display = 'none';
+            img.src = '';
+        }
+
+        function hideModalEventDriven(e) {
+            if (e.target === modal || e.key === 'Escape') {
+                hideModal();
+            }
+        }
+
+        closeButton.removeEventListener('click', hideModal);
+        closeButton.addEventListener('click', hideModal);
+
+        // Remove the event listener from each image
+        images.forEach(function (image) {
+            image.removeEventListener('click', showModal);
+        });
+
+        // Add the event listener to each image
+        images.forEach(function (image) {
+            image.addEventListener('click', showModal);
+        });
+
+        // Close the modal when the user clicks outside of the <img> element
+        modal.removeEventListener('click', hideModalEventDriven);
+        modal.addEventListener('click', hideModalEventDriven);
+
+        // Close the modal when the user hits the Esc key
+        document.removeEventListener('keydown', hideModalEventDriven);
+        document.addEventListener('keydown', hideModalEventDriven);
+    }
+
     async function init() {
         // Clear the liked images from local storage
         localStorage.removeItem('likedImages');
 
         // load the liked images demo data
-        await loadDemoData();
+        // await loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
@@ -302,3 +430,41 @@
         document.addEventListener('DOMContentLoaded', init);
     }
 })();
+
+/*
+
+origRequest
+
+{
+    "prompt": "a photograph of an astronaut riding a horse",
+    "seed": 4141789285,
+    "used_random_seed": true,
+    "negative_prompt": "",
+    "num_outputs": 1,
+    "num_inference_steps": 10,
+    "guidance_scale": 7.5,
+    "width": 256,
+    "height": 256,
+    "vram_usage_level": "balanced",
+    "sampler_name": "euler_a",
+    "use_stable_diffusion_model": "deliberate_v2",
+    "clip_skip": false,
+    "use_vae_model": "",
+    "stream_progress_updates": true,
+    "stream_image_progress": false,
+    "show_only_filtered_image": true,
+    "block_nsfw": false,
+    "output_format": "jpeg",
+    "output_quality": 75,
+    "output_lossless": false,
+    "metadata_output_format": "none",
+    "original_prompt": "a photograph of an astronaut riding a horse",
+    "active_tags": [],
+    "inactive_tags": []
+}
+
+imageElement
+
+<img width="256" height="256" data-prompt="a photograph of an astronaut riding a horse" data-steps="10" data-guidance="7.5" data-seed="4141789285" data-imagecounter="2" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgK...pqm7XP/2Q==">
+
+*/
