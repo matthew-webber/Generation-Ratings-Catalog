@@ -266,7 +266,7 @@
 
     async function loadDemoData() {
         // Load the demo data
-        var demoData = await fetch(
+        const demoData = await fetch(
             'https://raw.githubusercontent.com/matthew-webber/Generation-Ratings-Catalog/master/generation-demo.json'
         ).then((response) => response.json());
 
@@ -274,12 +274,12 @@
         localStorage.setItem('likedImages', JSON.stringify(demoData));
     }
 
-    function init() {
+    async function init() {
         // Clear the liked images from local storage
         localStorage.removeItem('likedImages');
 
         // load the liked images demo data
-        loadDemoData();
+        await loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
