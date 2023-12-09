@@ -54,7 +54,12 @@
         }
         #liked-images-table thead i {
             padding-right: 10px;
-        }  
+        }
+        @media (min-width: 700px) {
+            body {
+                overflow-y: auto;
+            }
+        }
     `;
 
     const MARKUP = {
