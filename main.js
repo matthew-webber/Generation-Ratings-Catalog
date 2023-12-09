@@ -57,7 +57,7 @@
         }
         @media (min-width: 700px) {
             body {
-                overflow-y: auto;
+                overflow-y: auto !important; 
             }
         }
     `;
