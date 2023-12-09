@@ -64,7 +64,7 @@
 
     const MARKUP = {
         tab: `
-            <span id="tab-liked-images" class="tab"><span><i class="fa-solid fa-heart icon"></i><span>Liked Images</span></span></span>
+            <span id="tab-liked-images" class="tab"><span><i class="fa-solid fa-heart icon"></i>Liked Images</span></span>
         `,
         content: `
             <div id="tab-content-liked-images" class="tab-content">
