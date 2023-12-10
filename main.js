@@ -304,24 +304,27 @@
     }
 
     function displayLikedImages() {
-        var likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
-        var tableBody = document.getElementById('liked-images-list');
+        const likedImages =
+            JSON.parse(localStorage.getItem('likedImages')) || [];
+        const tableBody = document.getElementById('liked-images-list');
         tableBody.innerHTML = '';
 
         likedImages.forEach((imageData) => {
             // set the <img> element with imageData.imageCounter to a variable
-            var imageElement = document.querySelector(
+            const imageElement = document.querySelector(
                 `img[data-imagecounter="${imageData.imageCounter}"]`
             );
 
-            var row = `<tr>
+            const imageOuterHTML = imageElement ? imageElement.outerHTML : '';
+
+            const row = `<tr>
                 <td>${imageData.imageCounter}</td>
                 <td>${imageData.prompt}</td>
                 <td>${imageData.steps}</td>
                 <td>${imageData.guidance}</td>
                 <td>${imageData.seed}</td>
                 <td>${imageData.model}</td>
-                <td>${imageElement.outerHTML}</td>
+                <td>${imageOuterHTML}</td>
             </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
@@ -407,7 +410,7 @@
         localStorage.removeItem('likedImages');
 
         // load the liked images demo data
-        // await loadDemoData();
+        await loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
