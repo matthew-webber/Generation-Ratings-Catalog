@@ -65,6 +65,51 @@
         }
 
         /* ==================== */
+        /* Filter Styles */
+        /* ==================== */
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #filter-input {
+            width: 300px;
+            padding: 10px;
+        }
+        .filter-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            width: 100%;
+        }
+        .clear-button {
+            background-color: #7b1010;
+            color: white;
+            border-radius: 30%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        @media (max-width: 700px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .filter-container {
+                justify-content: center;
+            }
+        
+            #filter-input {
+                width: 80%;
+                margin: 10px 0;
+            }
+            
+        }
+
+        /* ==================== */
         /* Modal Styles */
         /* ==================== */
 
@@ -112,6 +157,9 @@
         .custom-tab-content-inner {
             padding: 20px 10px;
         }
+        .header-container h2 {
+            white-space: nowrap;
+        }
         @media (min-width: 700px) {
             body {
                 overflow-y: auto !important; 
@@ -126,7 +174,14 @@
         content: `
             <div id="tab-content-liked-images" class="tab-content">
                 <div id="liked-images" class="custom-tab-content-inner">
-                    <h2>Liked Images</h2>
+                    <div class="header-container">
+                        <h2>Liked Images</h2>
+                        <div class="filter-container">
+                            <button tton id="clear-filter" class="clear-button">X</button>
+                            <input id="filter-input" type="text" placeholder="Filter (extra: use column_name=filter_word)">
+                        </div>
+                    </div>
+                    </div>
                     <table id="liked-images-table">
                         <thead>
                             <tr>
@@ -304,6 +359,9 @@
     }
 
     function displayLikedImages() {
+        const headers = Array.from(
+            document.querySelectorAll('#liked-images-table th')
+        );
         const likedImages =
             JSON.parse(localStorage.getItem('likedImages')) || [];
         const tableBody = document.getElementById('liked-images-list');
@@ -328,6 +386,44 @@
             </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
+
+        const filterInput = document.querySelector('#filter-input');
+
+        filterInput.addEventListener('input', function () {
+            const filter = this.value.split('=').map((s) => s.trim());
+            const rows = document.querySelectorAll(
+                '#liked-images-table tbody tr'
+            );
+            rows.forEach((row) => {
+                const cells = Array.from(row.children);
+                if (filter.length === 2) {
+                    const columnIndex = headers.findIndex(
+                        (header) =>
+                            header.textContent.toLowerCase() ===
+                            filter[0].toLowerCase()
+                    );
+                    row.style.display =
+                        cells[columnIndex] &&
+                        cells[columnIndex].textContent.includes(filter[1])
+                            ? ''
+                            : 'none';
+                } else {
+                    row.style.display = cells.some((cell) =>
+                        cell.textContent.includes(filter[0])
+                    )
+                        ? ''
+                        : 'none';
+                }
+            });
+        });
+
+        const clearButton = document.querySelector('#clear-filter');
+
+        clearButton.addEventListener('click', function () {
+            filterInput.value = '';
+            filterInput.dispatchEvent(new Event('input'));
+        });
+
         addShowModalToSrcImage();
     }
 
