@@ -827,7 +827,7 @@
         localStorage.removeItem('likedImages');
 
         // load the liked images demo data
-        await loadDemoData();
+        // await loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
