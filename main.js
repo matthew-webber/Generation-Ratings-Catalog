@@ -137,65 +137,85 @@
             width: 100%;
             border-collapse: collapse;
         }
+
         thead th[data-name="id"] {
             width: 6%;
         }
+
         thead th[data-name="prompt"] {
             width: auto;
         }
+
         thead th[data-name="steps"] {
             width: 6%;
         }
+
         thead th[data-name="guidance"] {
             width: 6%;
         }
+
         thead th[data-name="seed"] {
             width: 8%;
         }
+
         thead th[data-name="model"] {
             width: 20%;
         }
+
         thead th[data-name="src"] {
             width: 3%;
         }
+
         thead th[data-name="negativePrompt"] {
             width: auto;
         }
+
         thead th[data-name="size"] {
             width: 6%;
         }
+
         thead th[data-name="sampler"] {
             width: 6%;
         }
+
         thead th[data-name="clipSkip"] {
             width: 8%;
         }
+
         thead th[data-name="VAE"] {
             width: 20%;
         }
+
         thead th[data-name="outputFormat"] {
             width: 3%;
         }
+
         thead th[data-name="outputQuality"] {
             width: 6%;
         }
+
         #liked-images-table th, #liked-images-table td {
             border: 1px solid #ddd; /* Light grey */
             padding: 8px;
         }
+
         #liked-images-table th {
             background-color: #5300B8; /* Purple */
             cursor: pointer;
         }
+
         #liked-images-table th.sortable:hover {
             background-color: #320365; /* Darker purple! */
         }
+
         #liked-images-table tr:nth-child(even) {
             background-color: #000;
         }
+
         #liked-images-table thead i {
             padding-right: 10px;
         }
+
         #liked-images-table tbody img {
             width: 50px;
             height: auto;
@@ -210,10 +230,12 @@
             justify-content: space-between;
             align-items: center;
         }
+
         #filter-input {
             width: 300px;
             padding: 10px;
         }
+
         .filter-container {
             display: flex;
             align-items: center;
@@ -221,6 +243,7 @@
             gap: 10px;
             width: 100%;
         }
+
         .clear-button {
             background-color: #7b1010;
             color: white;
@@ -230,6 +253,7 @@
             text-align: center;
             cursor: pointer;
         }
+
         @media (max-width: 700px) {
             .header-container {
                 flex-direction: column;
@@ -353,17 +377,24 @@
         /* General UI Styles */
         /* ==================== */
 
+        .hidden {
+            display: none;
+        }
+
         .title-container {
             display: flex;
             align-items: center;
             gap: 20px;
         }
+
         .custom-tab-content-inner {
             padding: 20px 10px;
         }
+
         .header-container h2 {
             white-space: nowrap;
         }
+
         @media (min-width: 700px) {
             body {
                 overflow-y: auto !important; 
@@ -784,8 +815,6 @@
         };
 
         // Save or remove the liked image data
-        console.log('origRequest', origRequest);
-        console.log('imageElement', imageElement);
         saveLikedImageData(imageData);
     }
 
