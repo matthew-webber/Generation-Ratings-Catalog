@@ -78,66 +78,51 @@
                     <div class="options-list">
                         <div class="column-default column">
                             <div class="option">
-                                <input type="checkbox" name="isLiked">
-                                <label for="isLiked">Liked</label>
+                                <label><input type="checkbox" name="isLiked"> Liked</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="id">
-                                <label for="id">id</label>
+                                <label><input type="checkbox" name="id"> id</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="prompt">
-                                <label for="prompt">Prompt</label>
+                                <label><input type="checkbox" name="prompt"> Prompt</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="steps">
-                                <label for="steps">Steps</label>
+                                <label><input type="checkbox" name="steps"> Steps</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="guidance">
-                                <label for="guidance">Guidance</label>
+                                <label><input type="checkbox" name="guidance"> Guidance</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="seed">
-                                <label for="seed">Seed</label>
+                                <label><input type="checkbox" name="seed"> Seed</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="model">
-                                <label for="model">Model</label>
+                                <label><input type="checkbox" name="model"> Model</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="src">
-                                <label for="src">Src</label>
+                                <label><input type="checkbox" name="src"> Src</label>
                             </div>
                         </div>
                         <div class="column-additional column">
                             <div class="option">
-                                <input type="checkbox" name="negativePrompt">
-                                <label for="negativePrompt">Negative Prompt</label>
+                                <label><input type="checkbox" name="negativePrompt"> Negative Prompt</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="size">
-                                <label for="size">Size</label>
+                                <label><input type="checkbox" name="size"> Size</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="sampler">
-                                <label for="sampler">Sampler</label>
+                                <label><input type="checkbox" name="sampler"> Sampler</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="clipSkip">
-                                <label for="clipSkip">Clip Skip</label>
+                                <label><input type="checkbox" name="clipSkip"> Clip Skip</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="VAE">
-                                <label for="VAE">VAE</label>
+                                <label><input type="checkbox" name="VAE"> VAE</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="outputFormat">
-                                <label for="outputFormat">Output Format</label>
+                                <label><input type="checkbox" name="outputFormat"> Output Format</label>
                             </div>
                             <div class="option">
-                                <input type="checkbox" name="outputQuality">
-                                <label for="outputQuality">Output Quality</label>
+                                <label><input type="checkbox" name="outputQuality"> Output Quality</label>
                             </div>
                         </div>
                     </div>
