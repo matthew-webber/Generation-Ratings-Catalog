@@ -1,5 +1,13 @@
 [
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "500",
         "prompt": "tabby cat on a windowsill, rays of sunshine, photorealistic",
         "steps": 14,
@@ -8,6 +16,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "600",
         "prompt": "majestic waterfall in a lush forest, vibrant colors",
         "steps": 20,
@@ -16,6 +32,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "700",
         "prompt": "spectacular sunset over a tranquil beach, calming waves",
         "steps": 25,
@@ -24,6 +48,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "800",
         "prompt": "ancient ruins in a dense jungle, mystical atmosphere",
         "steps": 30,
@@ -32,6 +64,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "900",
         "prompt": "a bustling market in Marrakech, vibrant colors, exotic spices",
         "steps": 35,
@@ -40,6 +80,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1100",
         "prompt": "enchanted forest with fireflies, magical ambiance",
         "steps": 45,
@@ -48,6 +96,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "400",
         "prompt": "photorealistic image of a tabby cat on a windowsill with rays of sunshine coming through the window, (photorealistic:1.1)",
         "steps": 14,
@@ -56,6 +112,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "300",
         "prompt": "tabby cat, windowsill, rays of sunshine shining on it, (photorealistic:1.2)",
         "steps": 14,
@@ -64,6 +128,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "200",
         "prompt": "a speeding Ferrari, Brooklyn street, (fast car, Ferrari:1.1)",
         "steps": 12,
@@ -72,6 +144,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "4200",
         "prompt": "a speeding Ferrari, Brooklyn street, sundown",
         "steps": 12,
@@ -80,6 +160,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "4300",
         "prompt": "a Ferrari zooming down a Brooklyn street at sundown",
         "steps": 12,
@@ -88,6 +176,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1000",
         "prompt": "a photograph of an astronaut riding a horse",
         "steps": 10,
@@ -96,6 +192,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "100",
         "prompt": "a photograph of an astronaut riding a horse",
         "steps": 10,
@@ -104,6 +208,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1200",
         "prompt": "magnificent mountain range covered in snow, serene landscape",
         "steps": 45,
@@ -112,6 +224,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1300",
         "prompt": "vivid coral reef teeming with marine life, crystal clear water",
         "steps": 30,
@@ -120,6 +240,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1400",
         "prompt": "ancient Greek temple on a hill, golden sunlight",
         "steps": 20,
@@ -128,6 +256,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1500",
         "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
         "steps": 40,
@@ -136,6 +272,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1600",
         "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
         "steps": 35,
@@ -144,6 +288,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1700",
         "prompt": "majestic waterfall in a lush forest, vibrant colors",
         "steps": 45,
@@ -152,6 +304,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1800",
         "prompt": "spectacular sunset over a tranquil beach, calming waves",
         "steps": 50,
@@ -160,6 +320,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "1900",
         "prompt": "ancient ruins in a dense jungle, mystical atmosphere",
         "steps": 15,
@@ -168,6 +336,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2000",
         "prompt": "a bustling market in Marrakech, vibrant colors, exotic spices",
         "steps": 25,
@@ -176,6 +352,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2100",
         "prompt": "enchanted forest with fireflies, magical ambiance",
         "steps": 30,
@@ -184,6 +368,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2200",
         "prompt": "magnificent mountain range covered in snow, serene landscape",
         "steps": 40,
@@ -192,6 +384,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2300",
         "prompt": "vivid coral reef teeming with marine life, crystal clear water",
         "steps": 35,
@@ -200,6 +400,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2400",
         "prompt": "ancient Greek temple on a hill, golden sunlight",
         "steps": 20,
@@ -208,6 +416,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2500",
         "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
         "steps": 30,
@@ -216,6 +432,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2600",
         "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
         "steps": 25,
@@ -224,6 +448,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2700",
         "prompt": "ancient Egyptian pyramid under a clear blue sky",
         "steps": 40,
@@ -232,6 +464,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2800",
         "prompt": "vibrant market in Bangkok, street food stalls, bustling crowd",
         "steps": 25,
@@ -240,6 +480,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "2900",
         "prompt": "majestic waterfall in a tropical rainforest, lush vegetation",
         "steps": 20,
@@ -248,6 +496,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3000",
         "prompt": "colorful hot air balloons over the Swiss Alps, breathtaking view",
         "steps": 30,
@@ -256,6 +512,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3100",
         "prompt": "peaceful Zen garden with a koi pond, cherry blossoms",
         "steps": 35,
@@ -264,6 +528,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3200",
         "prompt": "medieval castle on a hill, dramatic sunset in the background",
         "steps": 45,
@@ -272,6 +544,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3300",
         "prompt": "vivid coral reef teeming with marine life, crystal clear water",
         "steps": 25,
@@ -280,6 +560,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3400",
         "prompt": "ancient Greek temple on a hill, golden sunlight",
         "steps": 30,
@@ -288,6 +576,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3500",
         "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
         "steps": 40,
@@ -296,6 +592,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3600",
         "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
         "steps": 45,
@@ -304,6 +608,14 @@
         "model": "f222"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3700",
         "prompt": "magnificent mountain range covered in snow, serene landscape",
         "steps": 35,
@@ -312,6 +624,14 @@
         "model": "sd-v1-4"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": true,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3800",
         "prompt": "vivid coral reef teeming with marine life, crystal clear water",
         "steps": 20,
@@ -320,6 +640,14 @@
         "model": "sd-v1-5"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "3900",
         "prompt": "ancient Greek temple on a hill, golden sunlight",
         "steps": 25,
@@ -328,6 +656,14 @@
         "model": "ICantBelieveItsNotButter"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "4000",
         "prompt": "colorful hot air balloons over Cappadocia, surreal scenery",
         "steps": 15,
@@ -336,6 +672,14 @@
         "model": "deliberate_v2"
     },
     {
+        "negativePrompt": "ugly, long neck, (((ugly)))",
+        "isLiked": false,
+        "size": "512x512",
+        "sampler": "Heun",
+        "clipSkip": false,
+        "VAE": "Foo",
+        "outputFormat": "jpeg",
+        "outputQuality": 75,
         "imageCounter": "4100",
         "prompt": "a serene Japanese garden with cherry blossoms, Zen atmosphere",
         "steps": 30,
