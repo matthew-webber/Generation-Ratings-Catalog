@@ -211,6 +211,7 @@
         #liked-images-table th {
             background-color: #5300B8; /* Purple */
             cursor: pointer;
+            position: relative;
         }
 
         #liked-images-table th.sortable:hover {
@@ -233,6 +234,24 @@
         #liked-images-table tr.liked {
             background-color: rgba(0, 255, 0, 0.2);
         }
+
+        #liked-images-table th.sortable::after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            font-size: 1rem;
+            z-index: 1;
+        }
+
+        #liked-images-table th.sortable.asc::after {
+            content: '↑';
+        }
+
+        #liked-images-table th.sortable.desc::after {
+            content: '↓';
+        }
+
 
         /* ==================== */
         /* Search Styles */
@@ -572,20 +591,17 @@
         const headers = table.querySelectorAll('th');
 
         headers.forEach((header, index) => {
-            header.classList.add('sortable');
-            // if the header is not 'src' or 'actions', add a click event listener
-            'src' !== header.getAttribute('data-type') &&
+            const dataTypeAttr = header.getAttribute('data-type');
+            // if the header is not the src image column, add a click event listener and a 'sortable' class
+            if (dataTypeAttr !== 'meta') {
+                header.classList.add('sortable');
                 header.addEventListener('click', () => {
                     const isAsc = !header.classList.contains('asc');
-                    sortTableByColumn(
-                        table,
-                        index,
-                        header.getAttribute('data-type'),
-                        isAsc
-                    );
+                    sortTableByColumn(table, index, dataTypeAttr, isAsc);
                     headers.forEach((h) => h.classList.remove('asc', 'desc'));
                     header.classList.add(isAsc ? 'asc' : 'desc');
                 });
+            }
         });
     }
 
@@ -656,19 +672,27 @@
         const filterInput = document.querySelector('#search-input');
         const clearButton = document.querySelector('#clear-search');
 
+        const headers = Array.from(
+            document.querySelectorAll('#liked-images-table th')
+        );
+
         // Add event listener to filter input
         filterInput.addEventListener('input', function () {
-            const filter = this.value.split('=').map((s) => s.trim());
+            const filter = this.value
+                .split('=')
+                .map((s) => s.trim().toLowerCase());
             const rows = document.querySelectorAll(
                 '#liked-images-table tbody tr'
             );
             rows.forEach((row) => {
                 const cells = Array.from(row.children);
                 if (filter.length === 2) {
+                    console.log('filter[0]', filter[0]);
+                    console.log('filter[1]', filter[1]);
+                    console.log('headers', headers);
                     const columnIndex = headers.findIndex(
                         (header) =>
-                            header.textContent.toLowerCase() ===
-                            filter[0].toLowerCase()
+                            header.textContent.toLowerCase() === filter[0]
                     );
                     row.style.display =
                         cells[columnIndex] &&
