@@ -555,22 +555,7 @@
             .querySelectorAll('#table-options-modal input[type="checkbox"]')
             .forEach((checkbox) => {
                 checkbox.addEventListener('change', () => {
-                    const columnIndex = Array.from(
-                        document.querySelector('#liked-images-table thead tr')
-                            .children
-                    ).findIndex(
-                        (th) => th.getAttribute('data-name') === checkbox.name
-                    );
-                    const column = document.querySelector(
-                        `thead th[data-name="${checkbox.name}"]`
-                    );
-                    column.style.display = checkbox.checked ? '' : 'none';
-                    document
-                        .querySelectorAll(`#liked-images-table tbody tr`)
-                        .forEach((row) => {
-                            row.children[columnIndex].style.display =
-                                checkbox.checked ? '' : 'none';
-                        });
+                    toggleDataCellVisibility(checkbox);
                 });
             });
 
@@ -614,9 +599,6 @@
      */
     function displayLikedImages() {
         console.log('calling displayLikedImages');
-        const headers = Array.from(
-            document.querySelectorAll('#liked-images-table th')
-        );
         const imagesList = getImagesList();
         const tableBody = document.getElementById('liked-images-list');
         tableBody.innerHTML = '';
@@ -648,6 +630,13 @@
             </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
+
+        // Hide values for columns that are unchecked
+        document
+            .querySelectorAll('#table-options-modal input[type="checkbox"]')
+            .forEach((checkbox) => {
+                toggleDataCellVisibility(checkbox);
+            });
     }
 
     const injectLikedImagesListeners = () => {
@@ -729,6 +718,7 @@
                 document
                     .querySelector('#tab-content-liked-images')
                     .classList.add('active');
+
                 displayLikedImages();
             });
 
@@ -875,6 +865,23 @@
         return imageData;
     }
 
+    const toggleDataCellVisibility = (checkbox) => {
+        const columnIndex = Array.from(
+            document.querySelector('#liked-images-table thead tr').children
+        ).findIndex((th) => th.getAttribute('data-name') === checkbox.name);
+        const column = document.querySelector(
+            `thead th[data-name="${checkbox.name}"]`
+        );
+        column.style.display = checkbox.checked ? '' : 'none';
+        document
+            .querySelectorAll(`#liked-images-table tbody tr`)
+            .forEach((row) => {
+                row.children[columnIndex].style.display = checkbox.checked
+                    ? ''
+                    : 'none';
+            });
+    };
+
     function toggleLike(origRequest, imageElement) {
         // Toggle glow effect
         var imgContainer = imageElement.closest('.imgContainer');
@@ -940,7 +947,7 @@
         localStorage.removeItem('likedImages');
 
         // load the liked images demo data
-        // await loadDemoData();
+        await loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
