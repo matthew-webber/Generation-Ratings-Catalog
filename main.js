@@ -648,7 +648,9 @@
             </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
+    }
 
+    const injectLikedImagesListeners = () => {
         const filterInput = document.querySelector('#filter-input');
         const clearButton = document.querySelector('#clear-filter');
 
@@ -686,9 +688,7 @@
             filterInput.value = '';
             filterInput.dispatchEvent(new Event('input'));
         });
-
-        addShowModalFunctionality();
-    }
+    };
 
     function injectLikedImagesTab() {
         // Define the HTML for the tab
@@ -944,6 +944,12 @@
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
+
+        // Add listeners to images tab
+        injectLikedImagesListeners();
+
+        // Add show modal functionality
+        addShowModalFunctionality();
 
         // inject styles
         injectStyles();
