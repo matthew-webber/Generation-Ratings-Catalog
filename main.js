@@ -1,5 +1,18 @@
 (function () {
     'use strict';
+    let imageCounter = 0;
+
+    const incImageCounter = () => {
+        imageCounter++;
+    };
+
+    const saveHistoryItem = () => {
+        const imageData = setImageData();
+        const imagesList = getImagesList();
+        saveImageData(imagesList, imageData);
+    };
+    const makeImage = document.getElementById('makeImage');
+    makeImage.addEventListener('click', saveHistoryItem);
 
     PLUGINS['IMAGE_INFO_BUTTONS'].push(
         {
@@ -33,6 +46,7 @@
                     <table id="liked-images-table">
                         <thead>
                             <tr>
+                                <th data-type="boolean" data-name="isLiked">Liked</th>
                                 <th data-type="number" data-name="id">id</th>
                                 <th data-type="string" data-name="prompt">Prompt</th>
                                 <th data-type="number" data-name="steps">Steps</th>
@@ -63,6 +77,10 @@
                     <h2>Table Options</h2>
                     <div class="options-list">
                         <div class="column-default column">
+                            <div class="option">
+                                <input type="checkbox" name="isLiked">
+                                <label for="isLiked">Liked</label>
+                            </div>
                             <div class="option">
                                 <input type="checkbox" name="id">
                                 <label for="id">id</label>
@@ -136,6 +154,10 @@
         #liked-images-table {
             width: 100%;
             border-collapse: collapse;
+        }
+
+        thead th[data-name="isLiked"] {
+            width: 3%;
         }
 
         thead th[data-name="id"] {
@@ -608,6 +630,7 @@
             const imageOuterHTML = imageElement ? imageElement.outerHTML : '';
 
             const row = `<tr>
+                <td>${imageData.isLiked}</td>
                 <td>${imageData.imageCounter}</td>
                 <td>${imageData.prompt}</td>
                 <td>${imageData.steps}</td>
@@ -740,25 +763,37 @@
     }
 
     function logSavedData() {
-        let likedImages = localStorage.getItem('likedImages');
-        console.log('Saved Liked Images:', likedImages);
+        console.log('Promptfield value: ', promptField.value);
+        // let likedImages = localStorage.getItem('likedImages');
+        // console.log('Saved Liked Images:', likedImages);
     }
 
-    function saveLikedImageData(imageData) {
-        let likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
-        let imageIndex = likedImages.findIndex(
-            (img) => img.imageCounter === imageData.imageCounter
-        );
+    const likeImage = (imagesList, index) => {
+        console.log('imagesList', imagesList);
+        console.log('index', index);
+        console.log('imagesList[index] before', imagesList[index]);
+        imagesList[index].isLiked = true;
+        console.log('imagesList[index] after', imagesList[index]);
+        console.log('what is being returned', imagesList);
+        return imagesList;
+    };
 
-        if (imageIndex > -1) {
-            // If image is already liked, unlike it (toggle off)
-            likedImages.splice(imageIndex, 1);
-        } else {
-            // If image is not liked, add it to the liked images
-            likedImages.push(imageData);
+    const unlikeImage = (imagesList, index) => {
+        imagesList[index].isLiked = false;
+        return imagesList;
+    };
+
+    const getImagesList = () => {
+        const imagesList =
+            JSON.parse(localStorage.getItem('likedImages')) || [];
+        return imagesList;
+    };
+
+    function saveImageData(imagesList, imageData = null) {
+        if (imageData) {
+            imagesList.push(imageData);
         }
-
-        localStorage.setItem('likedImages', JSON.stringify(likedImages));
+        localStorage.setItem('likedImages', JSON.stringify(imagesList));
     }
 
     function sortTableByColumn(table, columnIndex, type, isAsc = true) {
@@ -787,6 +822,58 @@
         sortedRows.forEach((row) => tbody.appendChild(row));
     }
 
+    function setImageData(
+        origRequest = null,
+        imageElement = null,
+        isLiked = false
+    ) {
+        let imageData;
+        console.log('before imageCounter', imageCounter);
+        incImageCounter();
+        console.log('after imageCounter', imageCounter);
+        if (!origRequest || !imageElement) {
+            const prompt = promptField.value
+                .split('\n')
+                .filter((foo) => foo)[0];
+            imageData = {
+                imageCounter,
+                prompt,
+                steps: numInferenceStepsField.value,
+                guidance: guidanceScaleField.value,
+                seed: seedField.value,
+                model: stableDiffusionModelField.value,
+                negativePrompt: negativePromptField.value,
+                size: `${widthField.value}x${heightField.value}`,
+                sampler: samplerField.value,
+                clipSkip: clipSkipField.checked,
+                VAE: vaeModelField.value,
+                outputFormat: outputFormatField.value,
+                outputQuality: outputQualityField.value,
+                isLiked: isLiked,
+            };
+        } else {
+            imageData = {
+                // src: imageElement.getAttribute('src'),
+                imageCounter: imageElement.getAttribute('data-imagecounter'),
+                prompt: origRequest.prompt,
+                steps: origRequest.num_inference_steps,
+                guidance: origRequest.guidance_scale,
+                seed: origRequest.seed,
+                model: origRequest.use_stable_diffusion_model,
+                negativePrompt: origRequest.negative_prompt,
+                size: `${origRequest.width}x${origRequest.height}`,
+                sampler: origRequest.sampler_name,
+                clipSkip: origRequest.clip_skip,
+                VAE: origRequest.use_vae_model,
+                outputFormat: origRequest.output_format,
+                outputQuality: origRequest.output_quality,
+                isLiked: isLiked,
+            };
+        }
+        console.log('imageData', imageData);
+        return imageData;
+    }
+
     function toggleLike(origRequest, imageElement) {
         // Toggle glow effect
         var imgContainer = imageElement.closest('.imgContainer');
@@ -796,26 +883,51 @@
                 : '0 0 20px rgba(50, 205, 50, 0.7)';
         }
 
+        const imageCounter = imageElement.getAttribute('data-imagecounter');
+        let imagesList = getImagesList();
+
+        let isLiked = false;
+        let imageIndex = null;
+
+        // Check if image is already liked
+        imagesList.forEach((img, index) => {
+            if (img.imageCounter === parseInt(imageCounter)) {
+                isLiked = img.isLiked;
+                imageIndex = index;
+            }
+        });
+
+        console.log('imageIndex', imageIndex);
+        console.log('isLiked', isLiked);
+
+        // If image is already liked, unlike it
+        if (isLiked) {
+            imagesList = unlikeImage(imagesList, imageIndex);
+        } else {
+            // Otherwise, like it
+            imagesList = likeImage(imagesList, imageIndex);
+        }
+
         // Prepare image data
-        var imageData = {
-            // src: imageElement.getAttribute('src'),
-            imageCounter: imageElement.getAttribute('data-imagecounter'),
-            prompt: origRequest.prompt,
-            steps: origRequest.num_inference_steps,
-            guidance: origRequest.guidance_scale,
-            seed: origRequest.seed,
-            model: origRequest.use_stable_diffusion_model,
-            negativePrompt: origRequest.negative_prompt,
-            size: `${origRequest.width}x${origRequest.height}`,
-            sampler: origRequest.sampler_name,
-            clipSkip: origRequest.clip_skip,
-            VAE: origRequest.use_vae_model,
-            outputFormat: origRequest.output_format,
-            outputQuality: origRequest.output_quality,
-        };
+        // var imageData = {
+        //     // src: imageElement.getAttribute('src'),
+        //     imageCounter: imageElement.getAttribute('data-imagecounter'),
+        //     prompt: origRequest.prompt,
+        //     steps: origRequest.num_inference_steps,
+        //     guidance: origRequest.guidance_scale,
+        //     seed: origRequest.seed,
+        //     model: origRequest.use_stable_diffusion_model,
+        //     negativePrompt: origRequest.negative_prompt,
+        //     size: `${origRequest.width}x${origRequest.height}`,
+        //     sampler: origRequest.sampler_name,
+        //     clipSkip: origRequest.clip_skip,
+        //     VAE: origRequest.use_vae_model,
+        //     outputFormat: origRequest.output_format,
+        //     outputQuality: origRequest.output_quality,
+        // };
 
         // Save or remove the liked image data
-        saveLikedImageData(imageData);
+        saveImageData(imagesList);
     }
 
     // Utility function to log saved data
