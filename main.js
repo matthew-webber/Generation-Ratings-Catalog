@@ -613,15 +613,15 @@
      * Also provides filtering functionality based on user input.
      */
     function displayLikedImages() {
+        console.log('calling displayLikedImages');
         const headers = Array.from(
             document.querySelectorAll('#liked-images-table th')
         );
-        const likedImages =
-            JSON.parse(localStorage.getItem('likedImages')) || [];
+        const imagesList = getImagesList();
         const tableBody = document.getElementById('liked-images-list');
         tableBody.innerHTML = '';
 
-        likedImages.forEach((imageData) => {
+        imagesList.forEach((imageData) => {
             // set the <img> element with imageData.imageCounter to a variable
             const imageElement = document.querySelector(
                 `img[data-imagecounter="${imageData.imageCounter}"]`
@@ -650,7 +650,9 @@
         });
 
         const filterInput = document.querySelector('#filter-input');
+        const clearButton = document.querySelector('#clear-filter');
 
+        // Add event listener to filter input
         filterInput.addEventListener('input', function () {
             const filter = this.value.split('=').map((s) => s.trim());
             const rows = document.querySelectorAll(
@@ -679,8 +681,7 @@
             });
         });
 
-        const clearButton = document.querySelector('#clear-filter');
-
+        // Add event listener to clear button
         clearButton.addEventListener('click', function () {
             filterInput.value = '';
             filterInput.dispatchEvent(new Event('input'));
