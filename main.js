@@ -37,11 +37,13 @@
                             <h2>Liked Images</h2>
                             <i id="table-options-icon" class="fa-solid fa-cog"></i>
                         </div>
-                        <div class="filter-container">
-                            <button tton id="clear-filter" class="clear-button">X</button>
-                            <input id="filter-input" type="text" placeholder="Filter (extra: use column_name=filter_word)">
+                        <div class="search-container">
+                            <div class="search-wrapper">
+                                <label for="search-input">Filter by text:</label>
+                                <input id="search-input" type="text" placeholder="You can also use column_name=filter_word...">
+                                <button id="clear-search" class="clear-button">X</button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <table id="liked-images-table">
                         <thead>
@@ -228,8 +230,12 @@
             height: auto;
         }
 
+        #liked-images-table tr.liked {
+            background-color: rgba(0, 255, 0, 0.2);
+        }
+
         /* ==================== */
-        /* Filter Styles */
+        /* Search Styles */
         /* ==================== */
 
         .header-container {
@@ -238,12 +244,12 @@
             align-items: center;
         }
 
-        #filter-input {
+        #search-input {
             width: 300px;
             padding: 10px;
         }
 
-        .filter-container {
+        .search-container {
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -261,16 +267,21 @@
             cursor: pointer;
         }
 
+        .search-wrapper label {
+            text-align: center;
+            margin-right: 6px;
+        }
+
         @media (max-width: 700px) {
             .header-container {
                 flex-direction: column;
                 align-items: center;
             }
-            .filter-container {
+            .search-container {
                 justify-content: center;
             }
         
-            #filter-input {
+            #search-input {
                 width: 80%;
                 margin: 10px 0;
             }
@@ -583,7 +594,6 @@
      * Also provides filtering functionality based on user input.
      */
     function displayLikedImages() {
-        console.log('calling displayLikedImages');
         const imagesList = getImagesList();
         const tableBody = document.getElementById('liked-images-list');
         tableBody.innerHTML = '';
@@ -622,11 +632,29 @@
             .forEach((checkbox) => {
                 toggleDataCellVisibility(checkbox);
             });
+
+        // Highlight rows that have been liked
+        const headers = document.querySelectorAll('#liked-images-table th');
+        const likedColumnIndex = Array.from(headers).findIndex(
+            (header) => header.getAttribute('data-name') === 'isLiked'
+        );
+        document
+            .querySelectorAll('#liked-images-table tbody tr')
+            .forEach((row) => {
+                // Get the cell in the 'liked' column
+                const likedCell = row.children[likedColumnIndex];
+
+                // Check if the value in the 'liked' column is truthy
+                if (likedCell && likedCell.textContent === 'true') {
+                    // Change the background color of the row
+                    row.classList.add('liked');
+                }
+            });
     }
 
     const injectLikedImagesListeners = () => {
-        const filterInput = document.querySelector('#filter-input');
-        const clearButton = document.querySelector('#clear-filter');
+        const filterInput = document.querySelector('#search-input');
+        const clearButton = document.querySelector('#clear-search');
 
         // Add event listener to filter input
         filterInput.addEventListener('input', function () {
