@@ -7,9 +7,12 @@
     };
 
     const saveHistoryItem = () => {
-        const imageData = setImageData();
-        const imagesList = getImagesList();
-        saveImageData(imagesList, imageData);
+        const numberImages = parseInt(numOutputsTotalField.value);
+        for (let i = 0; i < numberImages; i++) {
+            const imageData = setImageData();
+            const imagesList = getImagesList();
+            saveImageData(imagesList, imageData);
+        }
     };
     const makeImage = document.getElementById('makeImage');
     makeImage.addEventListener('click', saveHistoryItem);
@@ -523,7 +526,6 @@
 
         // Show the pop-out menu when the filter button is clicked
         filterButton.addEventListener('click', () => {
-            console.log('listener 1');
             filterMenu.classList.toggle('hidden');
         });
 
@@ -534,7 +536,6 @@
                 !filterMenu.contains(event.target) &&
                 !filterMenu.classList.contains('hidden')
             ) {
-                console.log('listener 2');
                 filterMenu.classList.add('hidden');
             }
         });
@@ -564,29 +565,13 @@
             });
     };
 
-    function addShowModalFunctionality() {
-        /* ==================== */
-        /* Img Src Modal */
-        /* ==================== */
-
-        let modal;
-        if (!document.querySelector('.custom-modal')) {
-            // Create the modal element
-            modal = document.createElement('div');
-            modal.classList.add('custom-modal');
-            modal.innerHTML = `
-            <span class="custom-modal-close">&times;</span>
-            <img class="custom-modal-content">
-        `;
-            document.body.appendChild(modal);
-        }
-
-        modal = document.querySelector('.custom-modal');
+    const addImageSrcModalFunctionality = () => {
+        const imageSrcModal = document.querySelector('.custom-modal');
         const img = document.querySelector('.custom-modal-content');
         const closeButton = document.querySelectorAll('.custom-modal-close')[0];
 
         // Get the images in the 'src' column
-        var images = document.querySelectorAll('#liked-images-table img');
+        const images = document.querySelectorAll('#liked-images-table img');
 
         function showModal() {
             document.querySelector('.custom-modal').style.display = 'flex';
@@ -599,7 +584,7 @@
         }
 
         function hideModalEventDriven(e) {
-            if (e.target === modal || e.key === 'Escape') {
+            if (e.target === imageSrcModal || e.key === 'Escape') {
                 hideModal();
             }
         }
@@ -618,12 +603,30 @@
         });
 
         // Close the modal when the user clicks outside of the <img> element
-        modal.removeEventListener('click', hideModalEventDriven);
-        modal.addEventListener('click', hideModalEventDriven);
+        imageSrcModal.removeEventListener('click', hideModalEventDriven);
+        imageSrcModal.addEventListener('click', hideModalEventDriven);
 
         // Close the modal when the user hits the Esc key
         document.removeEventListener('keydown', hideModalEventDriven);
         document.addEventListener('keydown', hideModalEventDriven);
+    };
+
+    function addShowModalFunctionality() {
+        /* ==================== */
+        /* Img Src Modal */
+        /* ==================== */
+
+        let imageSrcModal;
+        if (!document.querySelector('.custom-modal')) {
+            // Create the modal element
+            imageSrcModal = document.createElement('div');
+            imageSrcModal.classList.add('custom-modal');
+            imageSrcModal.innerHTML = `
+            <span class="custom-modal-close">&times;</span>
+            <img class="custom-modal-content">
+        `;
+            document.body.appendChild(imageSrcModal);
+        }
 
         /* ==================== */
         /* Table Options Modal */
@@ -882,6 +885,7 @@
                     .classList.add('active');
 
                 displayLikedImages();
+                addImageSrcModalFunctionality();
             });
 
         // if any other tab other than Liked Images is clicked, deactivate the Liked Images tab
@@ -981,9 +985,7 @@
         isLiked = false
     ) {
         let imageData;
-        console.log('before imageCounter', imageCounter);
         incImageCounter();
-        console.log('after imageCounter', imageCounter);
         if (!origRequest || !imageElement) {
             const prompt = promptField.value
                 .split('\n')
@@ -1109,7 +1111,7 @@
         localStorage.removeItem('likedImages');
 
         // load the liked images demo data
-        await loadDemoData();
+        // await loadDemoData();
 
         // Inject the Liked Images tab
         injectLikedImagesTab();
