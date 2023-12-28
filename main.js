@@ -36,6 +36,32 @@
                         <div class="title-container">
                             <h2>Liked Images</h2>
                             <i id="table-options-icon" class="fa-solid fa-cog"></i>
+                            <div class="filter-wrapper">
+                                <button id="filter-button" class="filter-button">
+                                    <svg
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        fill='none'
+                                        viewBox='0 0 24 24'
+                                        strokeWidth='1.5'
+                                        stroke='currentColor'
+                                        width='1rem'
+                                        height='1rem'
+                                    >
+                                        <path
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                            d='M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z'
+                                        />
+                                    </svg>
+                                </button>
+                                <div id="filter-menu" class="filter-menu hidden">
+                                    <div class="filter-menu-header">Options</div>
+                                    <div class="option">
+                                        <label><input type="checkbox" name="isLiked">Liked Only</label>
+                                    </div>
+                                    <!-- Add more options as needed -->
+                                </div>
+                            </div>
                         </div>
                         <div class="search-container">
                             <div class="search-wrapper">
@@ -411,6 +437,57 @@
         }
 
         /* ==================== */
+        /* Filter Styles */
+        /* ==================== */
+
+        .filter-wrapper {
+            position: relative;
+        }
+
+        .filter-button {
+            background-color: #5300B8;
+            color: white;
+            border-radius: 30%;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+        }
+
+        .filter-menu {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            width: 200px;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-menu .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-menu .option label {
+        }
+
+        .filter-menu .option input[type="checkbox"] {
+        }
+
+        .filter-menu .option:last-child {
+        }
+
+        .filter-menu .option:last-child label {
+        }
+
+
+        /* ==================== */
         /* General UI Styles */
         /* ==================== */
 
@@ -438,6 +515,54 @@
             }
         }
     `;
+
+    const addFilteringFunctionality = () => {
+        // Get the filter button and the pop-out menu
+        const filterButton = document.querySelector('#filter-button');
+        const filterMenu = document.querySelector('#filter-menu');
+
+        // Show the pop-out menu when the filter button is clicked
+        filterButton.addEventListener('click', () => {
+            console.log('listener 1');
+            filterMenu.classList.toggle('hidden');
+        });
+
+        // Hide the pop-out menu when the filter button is clicked again
+        window.addEventListener('click', (event) => {
+            if (
+                !filterButton.contains(event.target) &&
+                !filterMenu.contains(event.target) &&
+                !filterMenu.classList.contains('hidden')
+            ) {
+                console.log('listener 2');
+                filterMenu.classList.add('hidden');
+            }
+        });
+
+        // Filter the table when a checkbox in the pop-out menu is checked
+        document
+            .querySelectorAll('#filter-menu input[type="checkbox"]')
+            .forEach((checkbox) => {
+                checkbox.addEventListener('change', () => {
+                    // Get all rows in the table
+                    const rows = document.querySelectorAll(
+                        '#liked-images-table tbody tr'
+                    );
+
+                    // Show or hide each row based on the value in the corresponding column
+                    rows.forEach((row) => {
+                        const cell = row.querySelector(
+                            `td[data-name="${checkbox.name}"]`
+                        );
+                        row.style.display =
+                            !checkbox.checked ||
+                            (cell && cell.textContent === 'true')
+                                ? ''
+                                : 'none';
+                    });
+                });
+            });
+    };
 
     function addShowModalFunctionality() {
         /* ==================== */
@@ -525,11 +650,11 @@
         console.log('settingsIcon', settingsIcon);
 
         function showTableOptionsModal() {
-            tableOptionsModal.style.display = 'block';
+            tableOptionsModal.style.display = 'block'; // TODO refactor to use 'hidden' class
         }
 
         function hideTableOptionsModal() {
-            tableOptionsModal.style.display = 'none';
+            tableOptionsModal.style.display = 'none'; // TODO refactor to use 'hidden' class
         }
 
         function hideTableOptionsModalEventDriven(e) {
@@ -623,21 +748,21 @@
             const imageOuterHTML = imageElement ? imageElement.outerHTML : '';
 
             const row = `<tr>
-                <td>${imageData.isLiked}</td>
-                <td>${imageData.imageCounter}</td>
-                <td>${imageData.prompt}</td>
-                <td>${imageData.steps}</td>
-                <td>${imageData.guidance}</td>
-                <td>${imageData.seed}</td>
-                <td>${imageData.model}</td>
-                <td>${imageOuterHTML}</td>
-                <td>${imageData.negativePrompt}</td>
-                <td>${imageData.size}</td>
-                <td>${imageData.sampler}</td>
-                <td>${imageData.clipSkip}</td>
-                <td>${imageData.VAE}</td>
-                <td>${imageData.outputFormat}</td>
-                <td>${imageData.outputQuality}</td>
+                <td data-name="isLiked">${imageData.isLiked}</td>
+                <td data-name="imageCounter">${imageData.imageCounter}</td>
+                <td data-name="prompt">${imageData.prompt}</td>
+                <td data-name="steps">${imageData.steps}</td>
+                <td data-name="guidance">${imageData.guidance}</td>
+                <td data-name="seed">${imageData.seed}</td>
+                <td data-name="model">${imageData.model}</td>
+                <td data-name="src">${imageOuterHTML}</td>
+                <td data-name="negativePrompt">${imageData.negativePrompt}</td>
+                <td data-name="size">${imageData.size}</td>
+                <td data-name="sampler">${imageData.sampler}</td>
+                <td data-name="clipSkip">${imageData.clipSkip}</td>
+                <td data-name="VAE">${imageData.VAE}</td>
+                <td data-name="outputFormat">${imageData.outputFormat}</td>
+                <td data-name="outputQuality">${imageData.outputQuality}</td>
             </tr>`;
             tableBody.insertAdjacentHTML('beforeend', row);
         });
@@ -994,6 +1119,9 @@
 
         // Add show modal functionality
         addShowModalFunctionality();
+
+        // Add filtering functionality
+        addFilteringFunctionality();
 
         // inject styles
         injectStyles();
